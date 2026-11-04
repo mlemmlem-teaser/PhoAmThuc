@@ -1,0 +1,64 @@
+﻿@inject CurrentUser Current
+@{
+    ViewData["Title"] = ViewBag.PageTitle;
+}
+
+<section>
+    <div class="pagehead">
+        <h1 class="pagetitle">@ViewBag.PageTitle</h1>
+        @if (Current.IsLoggedIn)
+        {
+            <a class="mainbutton" asp-controller="Post" asp-action="Create">Viết bài mới</a>
+        }
+    </div>
+
+    @* Biểu mẫu gửi bằng GET: các lựa chọn nằm trên đường dẫn nên có thể chia sẻ và bấm Back. JavaScript điền lại giá trị từ đường dẫn *@
+    <form class="filterbar" id="FilterForm" asp-controller="Post" asp-action="Index" method="get">
+        <input class="textinput" type="search" name="q" placeholder="Tìm theo tiêu đề, mô tả..." />
+        <select class="textinput" name="kind">
+            <option value="">Mọi loại bài</option>
+            <option value="recipe">Công thức nấu ăn</option>
+            <option value="tip">Kinh nghiệm nấu ăn</option>
+            <option value="experience">Trải nghiệm ẩm thực</option>
+            <option value="review">Bài viết đánh giá</option>
+            <option value="promo">Bài đăng quảng bá</option>
+        </select>
+        <select class="textinput" name="labelId" id="LabelFilter">
+            <option value="">Mọi nhãn</option>
+        </select>
+        <input class="textinput" type="text" name="author" placeholder="Tên người đăng" />
+        <select class="textinput" name="minRating">
+            <option value="">Mọi mức điểm</option>
+            <option value="9">Từ 9 điểm</option>
+            <option value="8">Từ 8 điểm</option>
+            <option value="7">Từ 7 điểm</option>
+            <option value="6">Từ 6 điểm</option>
+            <option value="5">Từ 5 điểm</option>
+        </select>
+        <select class="textinput" name="sort">
+            <option value="">Mới đăng nhất</option>
+            <option value="updated">Mới cập nhật nhất</option>
+            <option value="rating">Điểm đánh giá cao nhất</option>
+            <option value="ratingcount">Nhiều lượt đánh giá nhất</option>
+        </select>
+        <div class="filteractions">
+            <button type="submit" class="mainbutton">Lọc</button>
+            <a class="linkbutton" asp-controller="Post" asp-action="Index">Xóa bộ lọc</a>
+        </div>
+    </form>
+
+    <p class="notice notice-error hidden" id="ListMessage"></p>
+
+    <div class="postlist" id="PostList"></div>
+    <p class="emptytext hidden" id="EmptyNote">Không có bài đăng nào phù hợp.</p>
+
+    <nav class="pager" id="Pager"></nav>
+</section>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/postcard.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/postlist.js" asp-append-version="true"></script>
+}

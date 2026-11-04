@@ -1,0 +1,43 @@
+﻿
+<section>
+    <div class="pagehead">
+        <h1 class="pagetitle">@ViewBag.PageTitle</h1>
+        <a class="mainbutton" asp-controller="Post" asp-action="Create" asp-route-kind="@ViewBag.Kind">Viết bài mới</a>
+    </div>
+
+    <p class="notice notice-error hidden" id="MineMessage"></p>
+
+    <div class="minelist" id="MineList"></div>
+    <p class="emptytext hidden" id="EmptyNote">Bạn chưa có bài đăng nào.</p>
+
+    <nav class="pager" id="Pager"></nav>
+</section>
+
+<template id="MineItemTemplate">
+    <article class="mineitem">
+        <div class="mineinfo">
+            <h2 class="minetitle"><a class="minelink"></a></h2>
+            <p class="postmeta">
+                <span class="statusbadge"></span>
+                <span class="minedate"></span>
+                <span class="minerating"></span>
+                <span class="mineviews"></span>
+            </p>
+            <div class="postlabels"></div>
+        </div>
+        <div class="mineactions">
+            <a class="outlinebutton mineview">Xem</a>
+            <a class="outlinebutton mineedit">Sửa</a>
+            <button type="button" class="outlinebutton minetoggle">Đăng bài</button>
+            <button type="button" class="outlinebutton dangerbutton minedelete">Xóa</button>
+        </div>
+    </article>
+</template>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/postcard.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/postmine.js" asp-append-version="true"></script>
+}

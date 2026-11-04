@@ -1,0 +1,48 @@
+﻿<section class="tabpanel hidden" id="PagesPanel">
+    <p class="notice hidden" id="PgMessage"></p>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Trang</th>
+                    <th>Mã trang</th>
+                    <th>Hiển thị</th>
+                    <th>Cập nhật lần cuối</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="PgRows"></tbody>
+        </table>
+    </div>
+
+    <div class="formpanel hidden" id="PgForm">
+        <h3 class="subtitle" id="PgFormTitle">Sửa trang</h3>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="PgTitle">Tiêu đề</label>
+            <input class="textinput" type="text" id="PgTitle" maxlength="200" />
+        </div>
+        <div class="fieldrow">
+            <span class="fieldlabel">Nội dung</span>
+            <partial name="_RichEditor" />
+        </div>
+        <label class="checkrow">
+            <input type="checkbox" id="PgPublic" />
+            Hiển thị trang này trên website
+        </label>
+        <div class="editoractions">
+            <button type="button" class="mainbutton" id="PgSave">Lưu trang</button>
+            <button type="button" class="linkbutton" id="PgCancel">Hủy</button>
+        </div>
+    </div>
+</section>
+
+<template id="PgRowTemplate">
+    <tr>
+        <td class="pgtitle"></td>
+        <td class="pgslug"></td>
+        <td class="pgpublic"></td>
+        <td class="pgdate"></td>
+        <td class="rowactions"><button type="button" class="linkbutton pgedit">Sửa</button></td>
+    </tr>
+</template>

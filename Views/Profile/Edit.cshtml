@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Sửa hồ sơ";
+}
+
+<section class="formbox wideform" id="EditRoot" data-profileid="@ViewBag.ProfileId">
+    <h1 class="formtitle">Sửa hồ sơ của tôi</h1>
+
+    <p class="notice notice-error hidden" id="ProfileEditMessage"></p>
+
+    <div class="fieldrow">
+        <span class="fieldlabel">Ảnh đại diện</span>
+        <div class="coverbox">
+            <span class="avatarbox large">
+                <img class="avatar hidden" id="AvatarPreview" alt="" />
+                <span class="avatarholder" id="AvatarHolder"></span>
+            </span>
+            <input type="file" id="AvatarFile" accept="image/jpeg,image/png,image/webp" />
+            <button type="button" class="linkbutton hidden" id="AvatarRemove">Bỏ ảnh</button>
+        </div>
+        <span class="fieldhint">Ảnh jpg, png hoặc webp, tối đa 2MB.</span>
+    </div>
+
+    <div class="fieldrow">
+        <label class="fieldlabel" for="DisplayNameInput">Tên hiển thị</label>
+        <input class="textinput" type="text" id="DisplayNameInput" maxlength="100" />
+    </div>
+
+    <div class="fieldrow">
+        <label class="fieldlabel" for="BioInput">Giới thiệu bản thân</label>
+        <textarea class="textinput" id="BioInput" rows="5" maxlength="1000"></textarea>
+    </div>
+
+    <div class="editoractions">
+        <button type="button" class="mainbutton" id="SaveProfileButton">Lưu hồ sơ</button>
+        <a class="linkbutton" asp-controller="Profile" asp-action="Detail" asp-route-id="@ViewBag.ProfileId">Hủy</a>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/profileedit.js" asp-append-version="true"></script>
+}

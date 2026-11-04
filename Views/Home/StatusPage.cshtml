@@ -1,0 +1,27 @@
+﻿@{
+    int code = ViewBag.Code is int number ? number : 0;
+    string title = "Có lỗi xảy ra";
+    string text = "Website không xử lý được yêu cầu của bạn. Bạn thử lại sau hoặc quay về trang chủ.";
+
+    if (code == 404)
+    {
+        title = "Không tìm thấy trang";
+        text = "Trang bạn tìm không tồn tại, đã bị xóa hoặc bạn không có quyền xem. Hãy kiểm tra lại đường dẫn hoặc quay về trang chủ.";
+    }
+    else if (code == 403)
+    {
+        title = "Bạn không có quyền truy cập";
+        text = "Tài khoản của bạn không được phép xem trang này.";
+    }
+    ViewData["Title"] = title;
+}
+
+<section class="emptybox">
+    <h1 class="pagetitle">@title</h1>
+    @if (code > 0)
+    {
+        <p class="emptytext">Mã lỗi: @code</p>
+    }
+    <p class="emptytext">@text</p>
+    <a class="mainbutton" asp-controller="Home" asp-action="Index">Về trang chủ</a>
+</section>

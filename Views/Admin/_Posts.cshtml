@@ -1,0 +1,54 @@
+﻿<section class="tabpanel hidden" id="PostsPanel">
+    <p class="notice hidden" id="PostMessage"></p>
+
+    <div class="adminbar">
+        <input class="textinput" type="search" id="PostSearch" placeholder="Tìm theo tiêu đề, tác giả..." />
+        <select class="textinput" id="PostStatusFilter">
+            <option value="">Mọi trạng thái</option>
+            <option value="Draft">Bản nháp</option>
+            <option value="Public">Công khai</option>
+            <option value="Hidden">Bị ẩn</option>
+            <option value="Deleted">Đã xóa</option>
+        </select>
+        <button type="button" class="mainbutton" id="PostFilterButton">Lọc</button>
+    </div>
+    <p class="fieldhint">Bài đăng chỉ bị xóa mềm (chuyển sang "Đã xóa") nên không làm mất bình luận và thống kê. Chọn lại trạng thái khác để khôi phục.</p>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tiêu đề</th>
+                    <th>Tác giả</th>
+                    <th>Trạng thái</th>
+                    <th>Lượt xem</th>
+                    <th>Ngày tạo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="PostRows"></tbody>
+        </table>
+    </div>
+    <p class="emptytext hidden" id="PostEmpty">Không có bài đăng nào phù hợp.</p>
+    <nav class="pager" id="PostPager"></nav>
+</section>
+
+<template id="AdminPostRowTemplate">
+    <tr>
+        <td class="pid"></td>
+        <td><a class="ptitle"></a></td>
+        <td><a class="pauthor"></a></td>
+        <td>
+            <select class="textinput pstatus">
+                <option value="Draft">Bản nháp</option>
+                <option value="Public">Công khai</option>
+                <option value="Hidden">Bị ẩn</option>
+                <option value="Deleted">Đã xóa</option>
+            </select>
+        </td>
+        <td class="pviews"></td>
+        <td class="pdate"></td>
+        <td class="rowactions"><a class="linkbutton pedit">Sửa nội dung</a></td>
+    </tr>
+</template>

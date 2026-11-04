@@ -1,0 +1,11 @@
+﻿@model InfoPage
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<article class="infopage">
+    <h1 class="pagetitle">@Model.Title</h1>
+    <div class="infobody">
+        @Html.Raw(ViewBag.ContentHtml)
+    </div>
+</article>

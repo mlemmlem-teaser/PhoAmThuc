@@ -1,0 +1,193 @@
+﻿@inject CurrentUser Current
+@{
+    ViewData["Title"] = "Khu vực nhà cung cấp";
+}
+
+<section class="managepage" id="ManageRoot" data-profileid="@Current.Id">
+    <div class="pagehead">
+        <h1 class="pagetitle">Khu vực nhà cung cấp</h1>
+        <a class="outlinebutton" asp-controller="Profile" asp-action="Detail" asp-route-id="@Current.Id">Xem hồ sơ công khai của tôi</a>
+    </div>
+
+    <div class="tabbar" id="TabBar">
+        <button type="button" class="tabbutton" data-tab="profile" data-panel="ProfilePanel">Hồ sơ doanh nghiệp</button>
+        <button type="button" class="tabbutton" data-tab="promo" data-panel="PromoPanel">Bài quảng bá</button>
+        <button type="button" class="tabbutton" data-tab="stats" data-panel="StatsPanel">Thống kê của tôi</button>
+        <button type="button" class="tabbutton" data-tab="feedback" data-panel="FeedbackPanel">Phản hồi</button>
+        <button type="button" class="tabbutton" data-tab="market" data-panel="MarketPanel">Thị trường</button>
+    </div>
+
+    @* ===== Hồ sơ doanh nghiệp ===== *@
+    <section class="tabpanel hidden" id="ProfilePanel">
+        <p class="notice notice-good hidden" id="BusinessHint">
+            Bạn chưa có hồ sơ doanh nghiệp. Hãy điền thông tin và đánh dấu "Hiển thị công khai" để xuất hiện trong danh sách nhà cung cấp.
+        </p>
+        <p class="notice notice-error hidden" id="BusinessMessage"></p>
+
+        <div class="fieldrow">
+            <span class="fieldlabel">Logo hoặc ảnh đại diện doanh nghiệp</span>
+            <div class="coverbox">
+                <span class="avatarbox large">
+                    <img class="avatar hidden" id="LogoPreview" alt="" />
+                    <span class="avatarholder" id="LogoHolder"></span>
+                </span>
+                <input type="file" id="LogoFile" accept="image/jpeg,image/png,image/webp" />
+                <button type="button" class="linkbutton hidden" id="LogoRemove">Bỏ ảnh</button>
+            </div>
+            <span class="fieldhint">Ảnh jpg, png hoặc webp, tối đa 2MB.</span>
+        </div>
+
+        <div class="fieldrow">
+            <label class="fieldlabel" for="BusinessNameInput">Tên doanh nghiệp</label>
+            <input class="textinput" type="text" id="BusinessNameInput" maxlength="200" />
+        </div>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="DescriptionInput">Mô tả</label>
+            <textarea class="textinput" id="DescriptionInput" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div class="fieldgrid twocolumns">
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AddressInput">Địa chỉ</label>
+                <input class="textinput" type="text" id="AddressInput" maxlength="300" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PhoneInput">Số điện thoại</label>
+                <input class="textinput" type="text" id="PhoneInput" maxlength="30" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="ContactEmailInput">Email liên hệ</label>
+                <input class="textinput" type="email" id="ContactEmailInput" maxlength="254" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="WebsiteInput">Website</label>
+                <input class="textinput" type="url" id="WebsiteInput" maxlength="500" placeholder="https://..." />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="SocialInput">Liên kết mạng xã hội</label>
+                <input class="textinput" type="url" id="SocialInput" maxlength="500" placeholder="https://..." />
+            </div>
+        </div>
+        <label class="checkrow">
+            <input type="checkbox" id="IsPublicInput" checked />
+            Hiển thị công khai trong danh sách nhà cung cấp
+        </label>
+
+        <div class="editoractions">
+            <button type="button" class="mainbutton" id="SaveBusinessButton">Lưu hồ sơ doanh nghiệp</button>
+        </div>
+    </section>
+
+    @* ===== Bài quảng bá ===== *@
+    <section class="tabpanel hidden" id="PromoPanel">
+        <p>Bài quảng bá giúp bạn giới thiệu doanh nghiệp, sản phẩm hoặc dịch vụ. Chúng được quản lý như bài đăng thông thường nhưng có nhãn "Quảng bá" riêng để lọc và thống kê, và hiện kèm thông tin doanh nghiệp của bạn.</p>
+        <div class="editoractions">
+            <a class="mainbutton" asp-controller="Post" asp-action="Create" asp-route-kind="promo">Viết bài quảng bá</a>
+            <a class="outlinebutton" asp-controller="Post" asp-action="Mine" asp-route-kind="promo">Quản lý bài quảng bá của tôi</a>
+        </div>
+    </section>
+
+    @* ===== Thống kê của tôi ===== *@
+    <section class="tabpanel hidden" id="StatsPanel">
+        <p class="notice notice-error hidden" id="StatsMessage"></p>
+
+        <div class="statgrid">
+            <div class="statcard"><span class="statvalue" id="StatProfileViews">-</span><span class="statlabel">Lượt xem hồ sơ</span></div>
+            <div class="statcard"><span class="statvalue" id="StatPostViews">-</span><span class="statlabel">Lượt xem bài đăng của tôi</span></div>
+            <div class="statcard"><span class="statvalue" id="StatRating">-</span><span class="statlabel">Điểm đánh giá hồ sơ</span></div>
+            <div class="statcard"><span class="statvalue" id="StatPostComments">-</span><span class="statlabel">Bình luận trên bài của tôi</span></div>
+            <div class="statcard"><span class="statvalue" id="StatPostRatings">-</span><span class="statlabel">Đánh giá trên bài của tôi</span></div>
+        </div>
+
+        <p class="notice notice-error hidden" id="ChartNotice">
+            Chưa cài thư viện Chart.js nên chưa vẽ được biểu đồ. Các con số ở trên vẫn đúng.
+        </p>
+
+        <div class="statsbar">
+            <label class="ratingpick" for="DaysSelect">
+                Biểu đồ lượt xem trong
+                <select class="textinput" id="DaysSelect">
+                    <option value="7">7 ngày gần nhất</option>
+                    <option value="30" selected>30 ngày gần nhất</option>
+                    <option value="90">90 ngày gần nhất</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="chartgrid">
+            <div class="chartbox wide">
+                <h3 class="subtitle">Lượt xem theo ngày</h3>
+                <div class="chartcanvas"><canvas id="ViewsChart"></canvas></div>
+            </div>
+            <div class="chartbox">
+                <h3 class="subtitle">Phân bố điểm đánh giá hồ sơ</h3>
+                <div class="chartcanvas"><canvas id="RatingChart"></canvas></div>
+            </div>
+            <div class="chartbox">
+                <h3 class="subtitle">Bài đăng nhiều lượt xem nhất</h3>
+                <div class="chartcanvas"><canvas id="TopPostsChart"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    @* ===== Phản hồi ===== *@
+    <section class="tabpanel hidden" id="FeedbackPanel">
+        <div class="statsbar">
+            <label class="ratingpick" for="FeedbackFilter">
+                Hiển thị
+                <select class="textinput" id="FeedbackFilter">
+                    <option value="">Tất cả phản hồi</option>
+                    <option value="rating">Chỉ đánh giá có điểm</option>
+                    <option value="comment">Chỉ bình luận</option>
+                </select>
+            </label>
+        </div>
+
+        <p class="notice notice-error hidden" id="FeedbackMessage"></p>
+        <div class="commentlist" id="FeedbackList"></div>
+        <p class="emptytext hidden" id="FeedbackEmpty">Chưa có phản hồi nào từ người dùng.</p>
+        <nav class="pager" id="FeedbackPager"></nav>
+    </section>
+
+    @* ===== Thị trường ===== *@
+    <section class="tabpanel hidden" id="MarketPanel">
+        <p class="notice notice-error hidden" id="MarketMessage"></p>
+        <p>Số liệu tổng hợp từ các bài đăng công khai trên website. Tổng số bài công khai: <strong id="MarketTotal">-</strong></p>
+
+        <div class="chartgrid">
+            <div class="chartbox">
+                <h3 class="subtitle">Số bài đăng theo loại</h3>
+                <ul class="marketlist" id="TypesList"></ul>
+                <div class="chartcanvas"><canvas id="TypesChart"></canvas></div>
+            </div>
+            <div class="chartbox">
+                <h3 class="subtitle">Các nhãn xuất hiện nhiều</h3>
+                <ul class="marketlist" id="LabelsList"></ul>
+                <div class="chartcanvas"><canvas id="LabelsChart"></canvas></div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<template id="FeedbackItemTemplate">
+    <article class="commentitem">
+        <div class="commenthead">
+            <a class="commentauthor"></a>
+            <span class="commentrating hidden"></span>
+            <span class="commentdate"></span>
+        </div>
+        <p class="commenttext"></p>
+        <p class="fieldhint">Trên: <a class="feedbacktarget"></a></p>
+    </article>
+</template>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    @* Thư viện Chart.js (xem hướng dẫn cài ở cuối dự án). Thiếu file này thì trang vẫn chạy, chỉ không vẽ biểu đồ *@
+    <script src="~/lib/chartjs/chart.umd.js"></script>
+    <script src="~/js/chartview.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/providerfeedback.js" asp-append-version="true"></script>
+    <script src="~/js/providerstats.js" asp-append-version="true"></script>
+    <script src="~/js/providermanage.js" asp-append-version="true"></script>
+}

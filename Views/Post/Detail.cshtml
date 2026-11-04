@@ -1,0 +1,89 @@
+﻿@{
+    // Tiêu đề trang (thẻ title) do PostController đặt
+}
+
+<article class="postpage" id="PostRoot" data-postid="@ViewBag.PostId">
+    <p class="notice notice-error hidden" id="PostMessage"></p>
+
+    <div class="hidden" id="PostBody">
+        <p class="notice notice-error hidden" id="StatusNotice"></p>
+
+        <div class="postlabels" id="PostLabels"></div>
+        <h1 class="pagetitle" id="PostTitle"></h1>
+
+        <p class="postmeta">
+            Đăng bởi <a class="authorlink" id="PostAuthor"></a>
+            <span id="AuthorRole"></span>
+            <span id="PostDate"></span>
+            <span id="PostUpdated"></span>
+        </p>
+        <p class="postmeta">
+            <span id="PostRating"></span>
+            <span id="PostViews"></span>
+        </p>
+
+        <div class="owneractions hidden" id="OwnerActions">
+            <a class="outlinebutton" id="EditLink">Sửa bài</a>
+            <button type="button" class="outlinebutton dangerbutton" id="DeleteButton">Xóa bài</button>
+        </div>
+
+        <img class="postcover hidden" id="PostCover" alt="" />
+
+        <div class="contentbody" id="PostContent"></div>
+
+        <section class="recipebox hidden" id="RecipeBox">
+            <h2 class="sectiontitle">Công thức</h2>
+            <p class="recipefacts" id="RecipeFacts"></p>
+
+            <h3 class="subtitle">Nguyên liệu</h3>
+            <ul class="ingredientlist" id="IngredientList"></ul>
+
+            <h3 class="subtitle">Các bước thực hiện</h3>
+            <ol class="steplist" id="StepList"></ol>
+
+            <p class="recipenote hidden" id="RecipeNote"></p>
+        </section>
+
+        <section class="providerbox hidden" id="ProviderBox">
+            <h2 class="sectiontitle">Nhà cung cấp</h2>
+            <div class="providerhead">
+                <img class="providerlogo hidden" id="ProviderLogo" alt="" />
+                <div>
+                    <p class="providername" id="ProviderName"></p>
+                    <p class="providertext" id="ProviderDescription"></p>
+                </div>
+            </div>
+            <p class="providertext" id="ProviderAddress"></p>
+            <p class="providertext" id="ProviderPhone"></p>
+            <p class="providertext" id="ProviderEmail"></p>
+            <p class="providertext"><a id="ProviderWebsite" target="_blank" rel="noopener"></a></p>
+            <a class="outlinebutton" id="ProviderLink">Xem hồ sơ nhà cung cấp</a>
+        </section>
+
+        <partial name="_CommentSection" />
+    </div>
+</article>
+
+<template id="IngredientTemplate">
+    <li class="ingredientitem">
+        <span class="ingredientamount"></span>
+        <span class="ingredientname"></span>
+        <span class="ingredientnote"></span>
+    </li>
+</template>
+
+<template id="StepTemplate">
+    <li class="stepitem">
+        <p class="steptext"></p>
+        <img class="stepimage hidden" alt="" />
+    </li>
+</template>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/postcard.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/commentsection.js" asp-append-version="true"></script>
+    <script src="~/js/postdetail.js" asp-append-version="true"></script>
+}

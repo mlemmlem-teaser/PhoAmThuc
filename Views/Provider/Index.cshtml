@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Nhà cung cấp";
+}
+
+<section>
+    <div class="pagehead">
+        <h1 class="pagetitle">Nhà cung cấp</h1>
+    </div>
+
+    <form class="filterbar" asp-controller="Provider" asp-action="Index" method="get">
+        <input class="textinput" type="search" name="q" id="ProviderSearch" placeholder="Tìm theo tên doanh nghiệp..." />
+        <div class="filteractions">
+            <button type="submit" class="mainbutton">Tìm</button>
+            <a class="linkbutton" asp-controller="Provider" asp-action="Index">Xóa tìm kiếm</a>
+        </div>
+    </form>
+
+    <p class="notice notice-error hidden" id="ProviderMessage"></p>
+
+    <div class="providergrid" id="ProviderList"></div>
+    <p class="emptytext hidden" id="EmptyNote">Chưa có nhà cung cấp nào phù hợp.</p>
+
+    <nav class="pager" id="Pager"></nav>
+</section>
+
+<template id="ProviderCardTemplate">
+    <article class="providercard">
+        <span class="avatarbox large">
+            <img class="avatar hidden" alt="" />
+            <span class="avatarholder"></span>
+        </span>
+        <div class="providercardinfo">
+            <h2 class="providercardname"><a class="providerlink"></a></h2>
+            <p class="providertext providerdesc"></p>
+            <p class="providertext provideraddress"></p>
+            <p class="postmeta providerrating"></p>
+            <a class="outlinebutton providerbutton">Xem hồ sơ</a>
+        </div>
+    </article>
+</template>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/providerlist.js" asp-append-version="true"></script>
+}

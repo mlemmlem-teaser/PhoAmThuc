@@ -1,0 +1,64 @@
+﻿@{
+    // Tiêu đề trang (thẻ title) do ProfileController đặt
+}
+
+<article class="profilepage" id="ProfileRoot" data-profileid="@ViewBag.ProfileId">
+    <p class="notice notice-error hidden" id="ProfileMessage"></p>
+
+    <div class="hidden" id="ProfileBody">
+        <section class="profilehead">
+            <span class="avatarbox large">
+                <img class="avatar hidden" id="ProfileAvatar" alt="" />
+                <span class="avatarholder" id="ProfileHolder"></span>
+            </span>
+            <div class="profileinfo">
+                <h1 class="pagetitle" id="ProfileName"></h1>
+                <p class="postmeta">
+                    <span class="rolebadge" id="ProfileRole"></span>
+                    <span id="ProfileJoined"></span>
+                </p>
+                <p class="postmeta">
+                    <span id="ProfileRating"></span>
+                    <span id="ProfilePosts"></span>
+                    <span id="ProfileViews"></span>
+                </p>
+                <p class="profilebio hidden" id="ProfileBio"></p>
+                <a class="outlinebutton hidden" id="EditProfileLink" asp-controller="Profile" asp-action="Edit">Sửa hồ sơ</a>
+            </div>
+        </section>
+
+        <section class="providerbox hidden" id="ProviderBox">
+            <h2 class="sectiontitle">Thông tin doanh nghiệp</h2>
+            <div class="providerhead">
+                <img class="providerlogo hidden" id="ProviderLogo" alt="" />
+                <div>
+                    <p class="providername" id="ProviderName"></p>
+                    <p class="providertext" id="ProviderDescription"></p>
+                </div>
+            </div>
+            <p class="providertext" id="ProviderAddress"></p>
+            <p class="providertext" id="ProviderPhone"></p>
+            <p class="providertext" id="ProviderEmail"></p>
+            <p class="providertext"><a id="ProviderWebsite" target="_blank" rel="noopener"></a></p>
+            <p class="providertext"><a id="ProviderSocial" target="_blank" rel="noopener"></a></p>
+        </section>
+
+        <section class="profileposts">
+            <h2 class="sectiontitle">Bài đăng</h2>
+            <div class="postlist" id="PostList"></div>
+            <p class="emptytext hidden" id="EmptyNote">Chưa có bài đăng công khai nào.</p>
+            <nav class="pager" id="Pager"></nav>
+        </section>
+
+        <partial name="_CommentSection" />
+    </div>
+</article>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/postcard.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/commentsection.js" asp-append-version="true"></script>
+    <script src="~/js/profiledetail.js" asp-append-version="true"></script>
+}

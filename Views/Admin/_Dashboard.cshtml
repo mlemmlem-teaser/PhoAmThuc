@@ -1,0 +1,42 @@
+﻿<section class="tabpanel hidden" id="DashboardPanel">
+    <p class="notice notice-error hidden" id="DashMessage"></p>
+
+    <div class="statgrid">
+        <div class="statcard"><span class="statvalue" id="DashAccounts">-</span><span class="statlabel">Tổng số tài khoản</span></div>
+        <div class="statcard"><span class="statvalue" id="DashPosts">-</span><span class="statlabel">Bài đăng công khai</span></div>
+        <div class="statcard"><span class="statvalue" id="DashComments">-</span><span class="statlabel">Bình luận</span></div>
+        <div class="statcard"><span class="statvalue" id="DashRatings">-</span><span class="statlabel">Đánh giá</span></div>
+    </div>
+
+    <p class="notice notice-error hidden" id="DashChartNotice">
+        Chưa cài thư viện Chart.js nên chưa vẽ được biểu đồ. Các con số vẫn đúng.
+    </p>
+
+    <div class="statsbar">
+        <label class="ratingpick" for="DashDays">
+            Biểu đồ lượt xem trong
+            <select class="textinput" id="DashDays">
+                <option value="7">7 ngày gần nhất</option>
+                <option value="30" selected>30 ngày gần nhất</option>
+                <option value="90">90 ngày gần nhất</option>
+            </select>
+        </label>
+        <span class="fieldhint">Lượt xem là số lần mở trang, không phải số người dùng khác nhau.</span>
+    </div>
+
+    <div class="chartgrid">
+        <div class="chartbox wide">
+            <h3 class="subtitle">Lượt xem theo ngày</h3>
+            <div class="chartcanvas"><canvas id="DashViewsChart"></canvas></div>
+        </div>
+        <div class="chartbox">
+            <h3 class="subtitle">Bài đăng theo loại</h3>
+            <div class="chartcanvas"><canvas id="DashTypesChart"></canvas></div>
+        </div>
+        <div class="chartbox">
+            <h3 class="subtitle">Bài đăng nhiều lượt xem nhất</h3>
+            <ol class="marketlist" id="DashTopList"></ol>
+            <div class="chartcanvas"><canvas id="DashTopChart"></canvas></div>
+        </div>
+    </div>
+</section>

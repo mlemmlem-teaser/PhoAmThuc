@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="formbox">
+    <h1 class="formtitle">Đăng ký tài khoản</h1>
+
+    @if (ViewBag.IsOpen == false)
+    {
+        <p class="notice notice-error">Chức năng đăng ký đang tạm đóng. Bạn vui lòng quay lại sau.</p>
+    }
+    else
+    {
+        <form id="RegisterForm">
+            <div class="fieldrow">
+                <label class="fieldlabel" for="UsernameInput">Tên đăng nhập</label>
+                <input class="textinput" type="text" id="UsernameInput" maxlength="50" autocomplete="username" required />
+                <span class="fieldhint">3 đến 50 ký tự, chỉ gồm chữ không dấu, số, dấu chấm, dấu gạch dưới.</span>
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="DisplayNameInput">Tên hiển thị (không bắt buộc)</label>
+                <input class="textinput" type="text" id="DisplayNameInput" maxlength="100" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="EmailInput">Email</label>
+                <input class="textinput" type="email" id="EmailInput" maxlength="254" autocomplete="email" required />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PasswordInput">Mật khẩu</label>
+                <input class="textinput" type="password" id="PasswordInput" maxlength="100" autocomplete="new-password" required />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="ConfirmInput">Nhập lại mật khẩu</label>
+                <input class="textinput" type="password" id="ConfirmInput" maxlength="100" autocomplete="new-password" required />
+            </div>
+
+            <p class="notice notice-error hidden" id="RegisterMessage"></p>
+
+            <button type="submit" class="mainbutton fullbutton" id="RegisterButton">Đăng ký</button>
+        </form>
+
+        <p class="formnote">Đã có tài khoản? <a asp-controller="Account" asp-action="Login">Đăng nhập</a></p>
+    }
+</section>
+
+@section Scripts {
+    <script src="~/js/register.js" asp-append-version="true"></script>
+}

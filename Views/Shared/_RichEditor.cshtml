@@ -1,0 +1,24 @@
+﻿@* Trình soạn thảo nội dung (thanh công cụ + vùng soạn). JavaScript: wwwroot/js/richeditor.js (class RichEditor) *@
+@* Dùng cho trang soạn bài đăng và trang sửa nội dung các trang thông tin. Mỗi trang chỉ được có một trình soạn thảo *@
+
+<div class="toolbar" id="EditorToolbar">
+    <button type="button" class="toolbutton" data-command="bold" title="In đậm"><b>B</b></button>
+    <button type="button" class="toolbutton" data-command="italic" title="In nghiêng"><i>I</i></button>
+    <button type="button" class="toolbutton" data-command="underline" title="Gạch chân"><u>U</u></button>
+    <button type="button" class="toolbutton" data-command="formatBlock" data-value="h2" title="Đoạn thành tiêu đề">Tiêu đề</button>
+    <button type="button" class="toolbutton" data-command="formatBlock" data-value="p" title="Tiêu đề thành đoạn thường">Đoạn thường</button>
+    <select class="toolselect" id="FontSizeSelect" title="Cỡ chữ">
+        <option value="">Cỡ chữ</option>
+        <option value="2">Nhỏ</option>
+        <option value="3">Vừa</option>
+        <option value="5">Lớn</option>
+        <option value="6">Rất lớn</option>
+    </select>
+    <label class="toolcolor" title="Màu chữ">Màu chữ <input type="color" id="TextColorInput" value="#c8651b" /></label>
+    <button type="button" class="toolbutton" data-command="insertUnorderedList" title="Danh sách">&bull; Danh sách</button>
+    <button type="button" class="toolbutton" data-command="removeFormat" title="Xóa định dạng">Xóa định dạng</button>
+    <button type="button" class="toolbutton" id="InsertImageButton">Chèn ảnh</button>
+    <button type="button" class="toolbutton" id="InsertVideoButton">Chèn video YouTube</button>
+    <input type="file" class="hidden" id="EditorImageFile" accept="image/jpeg,image/png,image/webp" />
+</div>
+<div class="editorarea" id="ContentEditor" contenteditable="true" data-placeholder="Viết nội dung ở đây..."></div>

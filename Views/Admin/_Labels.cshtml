@@ -1,0 +1,58 @@
+﻿<section class="tabpanel hidden" id="LabelsPanel">
+    <p class="notice hidden" id="LbMessage"></p>
+
+    <div class="adminbar">
+        <button type="button" class="outlinebutton" id="LbAddButton">+ Thêm nhãn</button>
+    </div>
+    <p class="fieldhint">5 nhãn hệ thống (loại bài đăng) chỉ đổi được tên và mô tả. Nhãn đang gắn cho bài đăng không xóa được, hãy tắt nhãn thay vì xóa.</p>
+
+    <div class="formpanel hidden" id="LbForm">
+        <h3 class="subtitle" id="LbFormTitle">Nhãn</h3>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="LbName">Tên nhãn</label>
+            <input class="textinput" type="text" id="LbName" maxlength="80" />
+        </div>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="LbDescription">Mô tả</label>
+            <input class="textinput" type="text" id="LbDescription" maxlength="300" />
+        </div>
+        <label class="checkrow">
+            <input type="checkbox" id="LbActive" checked />
+            Đang bật (cho phép chọn khi viết bài)
+        </label>
+        <div class="editoractions">
+            <button type="button" class="mainbutton" id="LbSave">Lưu</button>
+            <button type="button" class="linkbutton" id="LbCancel">Hủy</button>
+        </div>
+    </div>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Tên nhãn</th>
+                    <th>Mô tả</th>
+                    <th>Loại</th>
+                    <th>Trạng thái</th>
+                    <th>Số bài</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="LbRows"></tbody>
+        </table>
+    </div>
+</section>
+
+<template id="LbRowTemplate">
+    <tr>
+        <td class="lbname"></td>
+        <td class="lbdesc"></td>
+        <td class="lbtype"></td>
+        <td><span class="statusbadge lbstatus"></span></td>
+        <td class="lbcount"></td>
+        <td class="rowactions">
+            <button type="button" class="linkbutton lbedit">Sửa</button>
+            <button type="button" class="linkbutton lbdelete">Xóa</button>
+        </td>
+    </tr>
+</template>

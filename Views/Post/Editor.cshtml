@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Soạn bài đăng";
+}
+
+<section class="editorpage" id="EditorRoot" data-postid="@ViewBag.PostId">
+    <h1 class="pagetitle" id="EditorTitle">Viết bài mới</h1>
+
+    <p class="notice notice-error hidden" id="EditorMessage"></p>
+
+    <div class="fieldrow">
+        <label class="fieldlabel" for="TitleInput">Tiêu đề</label>
+        <input class="textinput" type="text" id="TitleInput" maxlength="200" />
+    </div>
+
+    <div class="fieldrow">
+        <label class="fieldlabel" for="SummaryInput">Mô tả ngắn (không bắt buộc)</label>
+        <textarea class="textinput" id="SummaryInput" rows="2" maxlength="500"></textarea>
+        <span class="fieldhint">Để trống thì hệ thống tự lấy phần đầu của nội dung.</span>
+    </div>
+
+    <div class="fieldrow">
+        <span class="fieldlabel">Ảnh đại diện (không bắt buộc)</span>
+        <div class="coverbox">
+            <img class="covercurrent hidden" id="CoverPreview" alt="" />
+            <input type="file" id="CoverFile" accept="image/jpeg,image/png,image/webp" />
+            <button type="button" class="linkbutton hidden" id="CoverRemove">Bỏ ảnh</button>
+        </div>
+        <span class="fieldhint">Ảnh jpg, png hoặc webp, tối đa 2MB.</span>
+    </div>
+
+    <div class="fieldrow">
+        <span class="fieldlabel">Nhãn (chọn ít nhất một)</span>
+        <div class="labelgrid" id="LabelList"></div>
+    </div>
+
+    <div class="fieldrow">
+        <span class="fieldlabel">Nội dung</span>
+        <partial name="_RichEditor" />
+    </div>
+
+    <section class="recipeedit hidden" id="RecipeSection">
+        <label class="checkrow">
+            <input type="checkbox" id="IsRecipeInput" />
+            Đây là bài công thức nấu ăn (có nguyên liệu và các bước thực hiện)
+        </label>
+
+        <div class="hidden" id="RecipeFields">
+            <div class="fieldgrid">
+                <div class="fieldrow">
+                    <label class="fieldlabel" for="PrepInput">Chuẩn bị (phút)</label>
+                    <input class="textinput" type="number" id="PrepInput" min="0" max="10000" />
+                </div>
+                <div class="fieldrow">
+                    <label class="fieldlabel" for="CookInput">Nấu (phút)</label>
+                    <input class="textinput" type="number" id="CookInput" min="0" max="10000" />
+                </div>
+                <div class="fieldrow">
+                    <label class="fieldlabel" for="ServingsInput">Số khẩu phần</label>
+                    <input class="textinput" type="number" id="ServingsInput" min="1" max="1000" />
+                </div>
+                <div class="fieldrow">
+                    <label class="fieldlabel" for="DifficultySelect">Độ khó</label>
+                    <select class="textinput" id="DifficultySelect">
+                        <option value="">Không chọn</option>
+                        <option value="Easy">Dễ</option>
+                        <option value="Medium">Trung bình</option>
+                        <option value="Hard">Khó</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="fieldrow">
+                <label class="fieldlabel" for="RecipeNoteInput">Ghi chú công thức (không bắt buộc)</label>
+                <textarea class="textinput" id="RecipeNoteInput" rows="2" maxlength="1000"></textarea>
+            </div>
+
+            <h3 class="subtitle">Nguyên liệu</h3>
+            <div id="IngredientRows"></div>
+            <button type="button" class="outlinebutton" id="AddIngredientButton">+ Thêm nguyên liệu</button>
+
+            <h3 class="subtitle">Các bước thực hiện</h3>
+            <div id="StepRows"></div>
+            <button type="button" class="outlinebutton" id="AddStepButton">+ Thêm bước</button>
+        </div>
+    </section>
+
+    <div class="editoractions">
+        <button type="button" class="outlinebutton" id="SaveDraftButton">Lưu nháp</button>
+        <button type="button" class="mainbutton" id="PublishButton">Đăng bài</button>
+        <a class="linkbutton" asp-controller="Post" asp-action="Mine">Hủy</a>
+    </div>
+</section>
+
+<template id="LabelOptionTemplate">
+    <label class="labeloption">
+        <input type="checkbox" class="labelcheck" />
+        <span class="labeltext"></span>
+    </label>
+</template>
+
+<template id="IngredientRowTemplate">
+    <div class="ingredientrow">
+        <input class="textinput rowname" type="text" placeholder="Tên nguyên liệu" maxlength="200" />
+        <input class="textinput rowamount" type="number" min="0" step="any" placeholder="Số lượng" />
+        <input class="textinput rowunit" type="text" placeholder="Đơn vị" maxlength="50" />
+        <input class="textinput rownote" type="text" placeholder="Ghi chú" maxlength="250" />
+        <button type="button" class="linkbutton rowremove">Xóa</button>
+    </div>
+</template>
+
+<template id="StepRowTemplate">
+    <div class="steprow">
+        <span class="stepnumber"></span>
+        <div class="stepbody">
+            <textarea class="textinput stepinput" rows="3" maxlength="5000" placeholder="Mô tả bước này"></textarea>
+            <div class="stepphoto">
+                <input type="file" class="stepfile" accept="image/jpeg,image/png,image/webp" />
+                <img class="steppreview hidden" alt="" />
+                <button type="button" class="linkbutton stepclear hidden">Bỏ ảnh</button>
+            </div>
+        </div>
+        <div class="stepbuttons">
+            <button type="button" class="toolbutton stepup" title="Chuyển lên">&uarr;</button>
+            <button type="button" class="toolbutton stepdown" title="Chuyển xuống">&darr;</button>
+            <button type="button" class="linkbutton rowremove">Xóa</button>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    <script src="~/js/richeditor.js" asp-append-version="true"></script>
+    <script src="~/js/recipeform.js" asp-append-version="true"></script>
+    <script src="~/js/posteditor.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<section class="hero">
+    <h1 class="herotitle">Phố Ẩm Thực</h1>
+    <p class="herotext">Nơi chia sẻ công thức nấu ăn, kinh nghiệm trong bếp và những trải nghiệm ẩm thực của mọi người.</p>
+    <div class="herolinks">
+        <a class="mainbutton" asp-controller="Post" asp-action="Index">Xem bài đăng</a>
+        <a class="outlinebutton" asp-controller="Post" asp-action="Index" asp-route-kind="recipe">Công thức nấu ăn</a>
+    </div>
+</section>
+
+<p class="notice notice-error hidden" id="HomeMessage"></p>
+
+<section class="homesection hidden">
+    <div class="sectionhead">
+        <h2 class="sectiontitle">Bài đăng nổi nhất</h2>
+        <a class="linkbutton" asp-controller="Post" asp-action="Index">Xem tất cả</a>
+    </div>
+    <div class="postgrid" id="TopPosts"></div>
+</section>
+
+<section class="homesection hidden">
+    <div class="sectionhead">
+        <h2 class="sectiontitle">Nổi bật trong tháng này</h2>
+    </div>
+    <div class="postgrid" id="MonthPosts"></div>
+</section>
+
+<section class="homesection hidden">
+    <div class="sectionhead">
+        <h2 class="sectiontitle">Hồ sơ nổi bật</h2>
+        <a class="linkbutton" asp-controller="Provider" asp-action="Index">Danh sách nhà cung cấp</a>
+    </div>
+    <div class="profilegrid" id="FeaturedProfiles"></div>
+</section>
+
+<section class="homesection hidden">
+    <div class="sectionhead">
+        <h2 class="sectiontitle">Công thức nấu ăn mới nhất</h2>
+        <a class="linkbutton" asp-controller="Post" asp-action="Index" asp-route-kind="recipe">Xem tất cả</a>
+    </div>
+    <div class="postgrid" id="LatestRecipes"></div>
+</section>
+
+<template id="ProfileCardTemplate">
+    <a class="profilecard">
+        <span class="avatarbox">
+            <img class="avatar hidden" alt="" />
+            <span class="avatarholder"></span>
+        </span>
+        <span class="profilecardname"></span>
+        <span class="profilecardrole"></span>
+        <span class="profilecardrating"></span>
+    </a>
+</template>
+
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    <script src="~/js/postcard.js" asp-append-version="true"></script>
+    <script src="~/js/home.js" asp-append-version="true"></script>
+}

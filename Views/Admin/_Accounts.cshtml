@@ -1,0 +1,92 @@
+﻿<section class="tabpanel hidden" id="AccountsPanel">
+    <p class="notice hidden" id="AccMessage"></p>
+
+    <div class="adminbar">
+        <input class="textinput" type="search" id="AccSearch" placeholder="Tìm theo tên, email..." />
+        <select class="textinput" id="AccRoleFilter">
+            <option value="">Mọi vai trò</option>
+            <option value="User">Người dùng</option>
+            <option value="Chef">Đầu bếp</option>
+            <option value="Provider">Nhà cung cấp</option>
+            <option value="Admin">Quản trị viên</option>
+        </select>
+        <button type="button" class="mainbutton" id="AccFilterButton">Lọc</button>
+        <button type="button" class="outlinebutton" id="AccAddButton">+ Thêm tài khoản</button>
+    </div>
+
+    <div class="formpanel hidden" id="AccForm">
+        <h3 class="subtitle" id="AccFormTitle">Tài khoản</h3>
+        <div class="fieldgrid twocolumns">
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AccUsername">Tên đăng nhập</label>
+                <input class="textinput" type="text" id="AccUsername" maxlength="50" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AccDisplayName">Tên hiển thị</label>
+                <input class="textinput" type="text" id="AccDisplayName" maxlength="100" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AccEmail">Email</label>
+                <input class="textinput" type="email" id="AccEmail" maxlength="254" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AccPassword">Mật khẩu</label>
+                <input class="textinput" type="text" id="AccPassword" maxlength="100" />
+                <span class="fieldhint" id="AccPasswordHint"></span>
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="AccRole">Vai trò</label>
+                <select class="textinput" id="AccRole">
+                    <option value="User">Người dùng</option>
+                    <option value="Chef">Đầu bếp</option>
+                    <option value="Provider">Nhà cung cấp</option>
+                    <option value="Admin">Quản trị viên</option>
+                </select>
+            </div>
+        </div>
+        <label class="checkrow">
+            <input type="checkbox" id="AccLocked" />
+            Khóa tài khoản (không đăng nhập được)
+        </label>
+        <div class="editoractions">
+            <button type="button" class="mainbutton" id="AccSave">Lưu</button>
+            <button type="button" class="linkbutton" id="AccCancel">Hủy</button>
+        </div>
+    </div>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Tên hiển thị</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Bài</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="AccRows"></tbody>
+        </table>
+    </div>
+    <p class="emptytext hidden" id="AccEmpty">Không có tài khoản nào phù hợp.</p>
+    <nav class="pager" id="AccPager"></nav>
+</section>
+
+<template id="AccRowTemplate">
+    <tr>
+        <td class="accid"></td>
+        <td class="accusername"></td>
+        <td class="accname"></td>
+        <td class="accemail"></td>
+        <td class="accrole"></td>
+        <td><span class="statusbadge accstatus"></span></td>
+        <td class="accposts"></td>
+        <td class="rowactions">
+            <button type="button" class="linkbutton accedit">Sửa</button>
+            <button type="button" class="linkbutton accdelete">Xóa</button>
+        </td>
+    </tr>
+</template>

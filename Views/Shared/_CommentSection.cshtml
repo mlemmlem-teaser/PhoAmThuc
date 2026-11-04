@@ -1,0 +1,93 @@
+﻿@* Khu bình luận và đánh giá dùng chung cho trang bài đăng và trang hồ sơ. JavaScript: wwwroot/js/commentsection.js *@
+@* Trang dùng partial này cũng phải có _PostTemplates (để có khuôn PagerLinkTemplate) và nạp pager.js *@
+
+<section class="commentarea" id="CommentArea">
+    <h2 class="sectiontitle" id="CommentTitle">Bình luận và đánh giá</h2>
+    <p class="ratingsummary" id="CommentSummary"></p>
+
+    <p class="notice notice-error hidden" id="CommentMessage"></p>
+
+    <div class="commentform hidden" id="CommentFormBox">
+        <textarea class="textinput" id="CommentInput" rows="3" maxlength="2000" placeholder="Viết bình luận của bạn..."></textarea>
+        <div class="commentrow">
+            <label class="ratingpick hidden" id="RatingPick" for="RatingSelect">
+                Điểm đánh giá
+                <select class="textinput" id="RatingSelect">
+                    <option value="">Không đánh giá</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+            </label>
+            <button type="button" class="mainbutton" id="CommentSubmit">Gửi</button>
+        </div>
+    </div>
+    <p class="fieldhint hidden" id="CommentHint"></p>
+
+    <p class="loginhint hidden" id="LoginHint">
+        <a asp-controller="Account" asp-action="Login">Đăng nhập</a> để bình luận và đánh giá.
+    </p>
+
+    <div class="commentlist" id="CommentList"></div>
+    <p class="emptytext hidden" id="CommentEmpty">Chưa có bình luận nào.</p>
+    <nav class="pager" id="CommentPager"></nav>
+</section>
+
+@* Khuôn một bình luận. Câu trả lời dùng chung khuôn này (bỏ các phần chỉ dành cho bình luận gốc) *@
+<template id="CommentTemplate">
+    <article class="commentitem">
+        <div class="commenthead">
+            <a class="commentauthor"></a>
+            <span class="commentrole"></span>
+            <span class="commentrating hidden"></span>
+            <span class="commentdate"></span>
+        </div>
+        <p class="commenttext"></p>
+
+        <div class="commentactions">
+            <button type="button" class="linkbutton replybutton">Trả lời</button>
+            <button type="button" class="linkbutton editbutton">Sửa</button>
+            <button type="button" class="linkbutton deletebutton">Xóa</button>
+        </div>
+
+        <div class="editbox hidden">
+            <textarea class="textinput editinput" rows="3" maxlength="2000"></textarea>
+            <div class="commentrow">
+                <label class="ratingpick editratingpick hidden">
+                    Điểm
+                    <select class="textinput editrating">
+                        <option value="10">10</option>
+                        <option value="9">9</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </label>
+                <button type="button" class="mainbutton editsave">Lưu</button>
+                <button type="button" class="linkbutton editcancel">Hủy</button>
+            </div>
+        </div>
+
+        <div class="replybox hidden">
+            <textarea class="textinput replyinput" rows="2" maxlength="2000" placeholder="Viết câu trả lời..."></textarea>
+            <div class="commentrow">
+                <button type="button" class="mainbutton replysend">Gửi trả lời</button>
+                <button type="button" class="linkbutton replycancel">Hủy</button>
+            </div>
+        </div>
+
+        <div class="replylist"></div>
+    </article>
+</template>

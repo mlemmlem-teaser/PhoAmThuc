@@ -1,0 +1,58 @@
+﻿<section class="tabpanel hidden" id="CommentsPanel">
+    <p class="notice hidden" id="CmMessage"></p>
+
+    <div class="adminbar">
+        <input class="textinput" type="search" id="CmSearch" placeholder="Tìm theo nội dung, người viết..." />
+        <select class="textinput" id="CmTypeFilter">
+            <option value="">Mọi loại</option>
+            <option value="comment">Bình luận</option>
+            <option value="rating">Đánh giá có điểm</option>
+            <option value="reply">Câu trả lời</option>
+        </select>
+        <select class="textinput" id="CmStatusFilter">
+            <option value="">Mọi trạng thái</option>
+            <option value="Visible">Đang hiển thị</option>
+            <option value="Hidden">Đã ẩn</option>
+            <option value="Deleted">Đã xóa</option>
+        </select>
+        <button type="button" class="mainbutton" id="CmFilterButton">Lọc</button>
+    </div>
+    <p class="fieldhint">Ẩn hoặc xóa một bình luận gốc thì các câu trả lời của nó cũng ẩn hoặc xóa theo. Điểm trung bình chỉ tính các đánh giá đang hiển thị.</p>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Người viết</th>
+                    <th>Loại</th>
+                    <th>Nội dung</th>
+                    <th>Đối tượng</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày</th>
+                </tr>
+            </thead>
+            <tbody id="CmRows"></tbody>
+        </table>
+    </div>
+    <p class="emptytext hidden" id="CmEmpty">Không có bình luận nào phù hợp.</p>
+    <nav class="pager" id="CmPager"></nav>
+</section>
+
+<template id="AdminCommentRowTemplate">
+    <tr>
+        <td class="cid"></td>
+        <td><a class="cauthor"></a></td>
+        <td class="ctype"></td>
+        <td class="ccontent"></td>
+        <td><a class="ctarget"></a></td>
+        <td>
+            <select class="textinput cstatus">
+                <option value="Visible">Đang hiển thị</option>
+                <option value="Hidden">Đã ẩn</option>
+                <option value="Deleted">Đã xóa</option>
+            </select>
+        </td>
+        <td class="cdate"></td>
+    </tr>
+</template>

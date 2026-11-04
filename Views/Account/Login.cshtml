@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="formbox">
+    <h1 class="formtitle">Đăng nhập</h1>
+
+    <form id="LoginForm">
+        <div class="fieldrow">
+            <label class="fieldlabel" for="UsernameInput">Tên đăng nhập hoặc email</label>
+            <input class="textinput" type="text" id="UsernameInput" autocomplete="username" required />
+        </div>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="PasswordInput">Mật khẩu</label>
+            <input class="textinput" type="password" id="PasswordInput" autocomplete="current-password" required />
+        </div>
+
+        <p class="notice notice-error hidden" id="LoginMessage"></p>
+
+        <button type="submit" class="mainbutton fullbutton" id="LoginButton">Đăng nhập</button>
+    </form>
+
+    <p class="formnote">Chưa có tài khoản? <a asp-controller="Account" asp-action="Register">Đăng ký ngay</a></p>
+</section>
+
+@section Scripts {
+    <script src="~/js/login.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,92 @@
+﻿@inject CurrentUser Current
+@{
+    // Tên hiển thị của người đang đăng nhập (rỗng nếu là khách)
+    string displayName = Current.Account?.DisplayName ?? "";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Phố Ẩm Thực</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="wrap topbar-inner">
+            <a class="brand" asp-controller="Home" asp-action="Index">Phố Ẩm Thực</a>
+
+            <button type="button" class="menubutton" id="NavToggle" aria-label="Mở danh sách trang">&#9776;</button>
+
+            <nav class="navlist" id="NavList">
+                <a class="navitem" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                <a class="navitem" asp-controller="Post" asp-action="Index">Bài đăng</a>
+                <a class="navitem" asp-controller="Post" asp-action="Index" asp-route-kind="recipe">Công thức nấu ăn</a>
+                <a class="navitem" asp-controller="Provider" asp-action="Index">Nhà cung cấp</a>
+                <a class="navitem" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                <a class="navitem" asp-controller="Home" asp-action="About">Giới thiệu</a>
+                <a class="navitem" asp-controller="Home" asp-action="Help">Trợ giúp</a>
+            </nav>
+
+            <div class="accountbox">
+                @if (Current.IsLoggedIn)
+                {
+                    <button type="button" class="accountbutton" id="AccountButton">@displayName &#9662;</button>
+                    <div class="accountpanel" id="AccountPanel">
+                        <p class="accountname">@displayName</p>
+                        <p class="accountinfo">Vai trò: <strong>@Roles.GetDisplayName(Current.Role)</strong></p>
+                        <p class="accountinfo">Đánh giá: <strong id="MenuRating">...</strong></p>
+                        <p class="accountinfo">Số bài đăng: <strong id="MenuPostCount">...</strong></p>
+                        <hr class="divider" />
+                        <a class="menulink" asp-controller="Profile" asp-action="Detail" asp-route-id="@Current.Id">Hồ sơ của tôi</a>
+                        <a class="menulink" asp-controller="Profile" asp-action="Edit">Sửa hồ sơ</a>
+                        <a class="menulink" asp-controller="Post" asp-action="Create">Viết bài mới</a>
+                        <a class="menulink" asp-controller="Post" asp-action="Mine">Quản lý bài đăng</a>
+                        @if (Current.IsProvider)
+                        {
+                            <a class="menulink" asp-controller="Provider" asp-action="Manage">Khu vực nhà cung cấp</a>
+                        }
+                        @if (Current.IsAdmin)
+                        {
+                            <a class="menulink" asp-controller="Admin" asp-action="Index">Quản trị website</a>
+                        }
+                        <button type="button" class="linkbutton" id="LogoutButton">Đăng xuất</button>
+                    </div>
+                }
+                else
+                {
+                    <a class="mainbutton" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+                    <a class="outlinebutton" asp-controller="Account" asp-action="Register">Đăng ký</a>
+                }
+            </div>
+        </div>
+    </header>
+
+    <main class="pagebody">
+        <div class="wrap">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <div>
+                <p class="footer-title">Phố Ẩm Thực</p>
+                <p class="footer-text">Nơi chia sẻ công thức, kinh nghiệm và trải nghiệm ẩm thực.</p>
+            </div>
+            <div class="footer-links">
+                <a asp-controller="Home" asp-action="About">Giới thiệu</a>
+                <a asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                <a asp-controller="Home" asp-action="Help">Trợ giúp</a>
+            </div>
+            <p class="footer-copy">&copy; @DateTime.Now.Year Phố Ẩm Thực</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

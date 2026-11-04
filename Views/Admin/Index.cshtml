@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Quản trị";
+}
+
+<section class="managepage" id="AdminRoot">
+    <div class="pagehead">
+        <h1 class="pagetitle">Quản trị website</h1>
+    </div>
+
+    <div class="tabbar" id="TabBar">
+        <button type="button" class="tabbutton" data-tab="dashboard" data-panel="DashboardPanel">Tổng quan</button>
+        <button type="button" class="tabbutton" data-tab="accounts" data-panel="AccountsPanel">Tài khoản</button>
+        <button type="button" class="tabbutton" data-tab="posts" data-panel="PostsPanel">Bài đăng</button>
+        <button type="button" class="tabbutton" data-tab="comments" data-panel="CommentsPanel">Bình luận</button>
+        <button type="button" class="tabbutton" data-tab="providers" data-panel="ProvidersPanel">Nhà cung cấp</button>
+        <button type="button" class="tabbutton" data-tab="labels" data-panel="LabelsPanel">Nhãn</button>
+        <button type="button" class="tabbutton" data-tab="pages" data-panel="PagesPanel">Trang thông tin</button>
+        <button type="button" class="tabbutton" data-tab="settings" data-panel="SettingsPanel">Cấu hình</button>
+    </div>
+
+    <partial name="_Dashboard" />
+    <partial name="_Accounts" />
+    <partial name="_Posts" />
+    <partial name="_Comments" />
+    <partial name="_Providers" />
+    <partial name="_Labels" />
+    <partial name="_Pages" />
+    <partial name="_Settings" />
+</section>
+
+@* Khuôn chuyển trang (PagerLinkTemplate) nằm trong _PostTemplates *@
+<partial name="_PostTemplates" />
+
+@section Scripts {
+    @* Thư viện Chart.js (wwwroot/lib/chartjs/chart.umd.js). Thiếu file này thì trang vẫn chạy, chỉ không vẽ biểu đồ *@
+    <script src="~/lib/chartjs/chart.umd.js"></script>
+    <script src="~/js/chartview.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/tabcontrol.js" asp-append-version="true"></script>
+    <script src="~/js/richeditor.js" asp-append-version="true"></script>
+    <script src="~/js/admindashboard.js" asp-append-version="true"></script>
+    <script src="~/js/adminaccounts.js" asp-append-version="true"></script>
+    <script src="~/js/adminposts.js" asp-append-version="true"></script>
+    <script src="~/js/admincomments.js" asp-append-version="true"></script>
+    <script src="~/js/adminproviders.js" asp-append-version="true"></script>
+    <script src="~/js/adminlabels.js" asp-append-version="true"></script>
+    <script src="~/js/admininfo.js" asp-append-version="true"></script>
+    <script src="~/js/adminsettings.js" asp-append-version="true"></script>
+    <script src="~/js/adminpage.js" asp-append-version="true"></script>
+}

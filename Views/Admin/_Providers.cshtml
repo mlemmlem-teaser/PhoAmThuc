@@ -1,0 +1,88 @@
+﻿<section class="tabpanel hidden" id="ProvidersPanel">
+    <p class="notice hidden" id="PvMessage"></p>
+
+    <div class="adminbar">
+        <input class="textinput" type="search" id="PvSearch" placeholder="Tìm theo tên doanh nghiệp..." />
+        <button type="button" class="mainbutton" id="PvFilterButton">Tìm</button>
+    </div>
+    <div class="adminbar">
+        <select class="textinput" id="PvNewAccount">
+            <option value="">Nhà cung cấp chưa có hồ sơ...</option>
+        </select>
+        <button type="button" class="outlinebutton" id="PvAddButton">+ Tạo hồ sơ cho tài khoản này</button>
+    </div>
+
+    <div class="formpanel hidden" id="PvForm">
+        <h3 class="subtitle" id="PvFormTitle">Hồ sơ nhà cung cấp</h3>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="PvName">Tên doanh nghiệp</label>
+            <input class="textinput" type="text" id="PvName" maxlength="200" />
+        </div>
+        <div class="fieldrow">
+            <label class="fieldlabel" for="PvDescription">Mô tả</label>
+            <textarea class="textinput" id="PvDescription" rows="3" maxlength="2000"></textarea>
+        </div>
+        <div class="fieldgrid twocolumns">
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PvAddress">Địa chỉ</label>
+                <input class="textinput" type="text" id="PvAddress" maxlength="300" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PvPhone">Số điện thoại</label>
+                <input class="textinput" type="text" id="PvPhone" maxlength="30" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PvEmail">Email liên hệ</label>
+                <input class="textinput" type="email" id="PvEmail" maxlength="254" />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PvWebsite">Website</label>
+                <input class="textinput" type="url" id="PvWebsite" maxlength="500" placeholder="https://..." />
+            </div>
+            <div class="fieldrow">
+                <label class="fieldlabel" for="PvSocial">Liên kết mạng xã hội</label>
+                <input class="textinput" type="url" id="PvSocial" maxlength="500" placeholder="https://..." />
+            </div>
+        </div>
+        <label class="checkrow">
+            <input type="checkbox" id="PvPublic" />
+            Hiển thị công khai trong danh sách nhà cung cấp
+        </label>
+        <label class="checkrow hidden" id="PvLogoRow">
+            <input type="checkbox" id="PvClearLogo" />
+            Bỏ logo hiện tại (nhà cung cấp tự tải logo mới ở khu vực của họ)
+        </label>
+        <div class="editoractions">
+            <button type="button" class="mainbutton" id="PvSave">Lưu</button>
+            <button type="button" class="linkbutton" id="PvCancel">Hủy</button>
+        </div>
+    </div>
+
+    <div class="tablebox">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>Tài khoản</th>
+                    <th>Doanh nghiệp</th>
+                    <th>Công khai</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="PvRows"></tbody>
+        </table>
+    </div>
+    <p class="emptytext hidden" id="PvEmpty">Chưa có hồ sơ nhà cung cấp nào.</p>
+    <nav class="pager" id="PvPager"></nav>
+</section>
+
+<template id="PvRowTemplate">
+    <tr>
+        <td><a class="pvaccount"></a></td>
+        <td class="pvname"></td>
+        <td class="pvpublic"></td>
+        <td class="rowactions">
+            <button type="button" class="linkbutton pvedit">Sửa</button>
+            <button type="button" class="linkbutton pvdelete">Xóa</button>
+        </td>
+    </tr>
+</template>
